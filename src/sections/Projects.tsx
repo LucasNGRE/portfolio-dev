@@ -30,7 +30,7 @@ const portfolioProjects = [
       { title: "Develop an incredible user experience" },
       { title: "Not deployed" },
     ],
-    link: "https://lucasngre.github.io/Showcase-car/",
+    link: "https://showcase-car-nine.vercel.app/",
     image: bmwapp,
   },
   {
