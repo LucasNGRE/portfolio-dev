@@ -1,4 +1,5 @@
 import landingpage from "@/assets/images/landing-page.png";
+import siteAtelier from "@/assets/images/site-atelier.png";
 import bmwapp from "@/assets/images/bmw-site.png";
 import flipit from "@/assets/images/flipit.png";
 import Image from "next/image";
@@ -20,6 +21,18 @@ const portfolioProjects = [
     ],
     link: "https://lucasngre.github.io/Responsive_landing-page/",
     image: landingpage,
+  },
+  {
+    company: "Bonnefis Automobile",
+    year: "2024",
+    title: "Atelier Bonnefis",
+    results: [
+      { title: "First project with Webflow" },
+      { title: "Create a website for the workshops (mechanical and bodywork)" },
+      { title: "Developing a website to reflect the workshops' new brand identity" },
+    ],
+    link: "https://www.atelierbonnefis.com/",
+    image: siteAtelier,
   },
   {
     company: "Holberton School",

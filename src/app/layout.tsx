@@ -10,8 +10,11 @@ const calistoga = Calistoga ({
   weight: ["400"] });
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Created with the help of Frontend Tribe",
+  title: "Lucas NEGRE | Portfolio",
+  description: "Lucas NEGRE Portfolio",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

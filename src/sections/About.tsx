@@ -98,7 +98,7 @@ export const AboutSection = () => {
   return (
     <div id="about" className="py-20 lg:py-28">
       <div className="container">
-        <SectionHeader eyebrown="About Me" title="Welcome To My World" description="Learn more about who I amand what I do" />
+        <SectionHeader eyebrown="About Me" title="Welcome To My World" description="Learn more about who I am and what I do" />
         <div className="mt-20 flex flex-col gap-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
             <Card className="h-[320px] md:col-span-2 lg:col-span-1 ">
