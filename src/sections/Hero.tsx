@@ -70,14 +70,13 @@ export const HeroSection = () => {
             <div className='bg-green-500 size-2.5 rounded-full relative'>
               <div className='bg-green-500 absolute inset-0 rounded-full animate-ping-large'></div>
             </div>
-            <div className='text-sm font-medium'>Available for new projects</div>
+            <div className='text-sm font-medium'>Disponible pour des nouveaux projets</div>
           </div>
         </div>
         <div className='max-w-lg mx-auto'>
           <h1 className='font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide'>Lucas NEGRE</h1>
-          <h2 className='text-center text-white/60 mt-2'>Web Developer</h2>
-          <p className='mt-4 text-center text-white/60 md:text-lg'>I&apos;m studying web development and I&apos;m specializing in full stack development.
-            Let&apos;s work together to create something unique.
+          <h2 className='text-center text-white/60 mt-2'>Développeur Web - Full stack</h2>
+          <p className='mt-4 text-center text-white/60 md:text-lg'>Je suis en deuxième année de formation en développement full stack, et je travaille en alternance chez Bonnefis Automobile en tant que responsable de la partie technologique de l&apos;entreprise.
           </p>
         </div>
         <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
@@ -86,7 +85,7 @@ export const HeroSection = () => {
           className='inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl 
                     hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-out'>
           <span className='font-semibold'>
-            Explore my Work
+            Découvre mes projets
           </span>
           <ArrowDown className="size-4" />
         </button>
@@ -96,7 +95,7 @@ export const HeroSection = () => {
           className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl 
                     hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-out'>
           <span>🖐️</span>
-          <span className='font-semibold'>Let&apos;s connect</span>
+          <span className='font-semibold'>Me contacter</span>
         </button>
 
         </div>

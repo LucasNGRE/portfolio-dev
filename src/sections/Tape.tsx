@@ -3,10 +3,10 @@ import { Fragment } from 'react';
 
 const words = [
   "Performant",
-  "Dynamic",
+  "Dynamique",
   "Responsive",
-  "Intuitive",
-  "Modern",
+  "Intuitif",
+  "Moderne",
   "Search Engine Optimized",
   "Secure",
   "Maintainable",

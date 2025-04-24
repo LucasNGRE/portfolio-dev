@@ -87,23 +87,23 @@ export const ContactSection = () => {
           <div className="absolute inset-0 opacity-5 -z-10" style={{ backgroundImage: `url(${grainImage.src})` }}></div>
           <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
             <div>
-              <h2 className="font-serif text-2xl md:text-3xl">Let&apos;s create something amazing together</h2>
-              <p className="text-sm md:text-base mt-2">Let&apos;s connect and discuss your project.</p>
+              <h2 className="font-serif text-2xl md:text-3xl">Ensemble, donnons vie à des projets exceptionnels</h2>
+              <p className="text-sm md:text-base mt-2">Échangeons et discutons de votre projet.</p>
             </div>
             <button 
               onClick={toggleFormVisibility} 
               className="text-white bg-gray-900 px-6 h-12 rounded-xl border border-gray-900 hover:bg-gray-700 flex items-center gap-2"
             >
-              <span className="font-semibold">Contact me</span>
+              <span className="font-semibold">Contact</span>
               <ArrowUpRightIcon className="w-5 h-5" />
             </button>
           </div>
 
           {isFormVisible && (
             <div className="mt-8">
-              <h3 className="text-2xl font-semibold mb-4">Contact Form</h3>
+              <h3 className="text-2xl font-semibold mb-4">Formulaire de contact</h3>
               {isSpam && <p className="text-red-500">Your submission looks like spam.</p>}
-              {formSent && <p className="text-green-500">Your message has been sent!</p>}
+              {formSent && <p className="text-green-500">Ton message a été envoyé!</p>}
               {error && <p className="text-red-500">{error}</p>}
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <input 
@@ -111,7 +111,7 @@ export const ContactSection = () => {
                   name="name" 
                   value={formData.name} 
                   onChange={handleInputChange} 
-                  placeholder="Your Name" 
+                  placeholder="Nom" 
                   required 
                   className="px-4 py-2 border border-gray-300 rounded-xl" 
                 />
@@ -120,7 +120,7 @@ export const ContactSection = () => {
                   name="email" 
                   value={formData.email} 
                   onChange={handleInputChange} 
-                  placeholder="Your Email" 
+                  placeholder="Email" 
                   required 
                   className="px-4 py-2 border border-gray-300 rounded-xl" 
                 />
@@ -129,7 +129,7 @@ export const ContactSection = () => {
                   name="subject" 
                   value={formData.subject} 
                   onChange={handleInputChange} 
-                  placeholder="Subject" 
+                  placeholder="Sujet" 
                   required 
                   className="px-4 py-2 border border-gray-300 rounded-xl" 
                 />
@@ -137,7 +137,7 @@ export const ContactSection = () => {
                   name="message" 
                   value={formData.message} 
                   onChange={handleInputChange} 
-                  placeholder="Your Message" 
+                  placeholder="Message" 
                   required 
                   className="px-4 py-2 border border-gray-300 rounded-xl h-32" 
                 />
@@ -153,7 +153,7 @@ export const ContactSection = () => {
                   type="submit" 
                   className="bg-emerald-500 text-white px-6 py-2 rounded-xl hover:scale-105"
                 >
-                  Send Message
+                  Envoyer
                 </button>
               </form>
             </div>

@@ -16,8 +16,8 @@ const portfolioProjects = [
     title: "One Up Shad Landing Page",
     results: [
       { title: "Project from scratch (HTML, CSS, JavaScript)" },
-      { title: "Dark interface with scroll animations" },
-      { title: "Promotion of an iconic lure for fishing" },
+      { title: "Interface sombre avec animation au scroll" },
+      { title: "Promotion d'un leurre emblématique pour la pêche" },
     ],
     link: "https://lucasngre.github.io/Responsive_landing-page/",
     image: landingpage,
@@ -27,9 +27,9 @@ const portfolioProjects = [
     year: "2024",
     title: "Atelier Bonnefis",
     results: [
-      { title: "First project with Webflow" },
-      { title: "Create a website for the workshops (mechanical and bodywork)" },
-      { title: "Developing a website to reflect the workshops' new brand identity" },
+      { title: "Premier projet réalisé avec Webflow" },
+      { title: "Création d'un site web pour les ateliers (mécanique et carrosserie)" },
+      { title: "Développement d'un site web pour refléter la nouvelle identité visuelle des ateliers" },
     ],
     link: "https://www.atelierbonnefis.com/",
     image: siteAtelier,
@@ -39,9 +39,9 @@ const portfolioProjects = [
     year: "2024",
     title: "Showcase Car 3D",
     results: [
-      { title: "Practice to work with Threejs" },
-      { title: "Develop an incredible user experience" },
-      { title: "Not deployed" },
+      { title: "Projet pour découvrir Threejs" },
+      { title: "Développer une expérience utilisateur incroyable" },
+      { title: "Exemple de canva utilisable sur un site vitrine" },
     ],
     link: "https://showcase-car-nine.vercel.app/",
     image: bmwapp,
@@ -51,11 +51,11 @@ const portfolioProjects = [
     year: "2024",
     title: "Flip It marketplace",
     results: [
-      { title: "Final project of the first year in Holbert School" },
-      { title: "A marketplace with a good UI and UX" },
-      { title: "Not deployed" },
+      { title: "Projet final de la première année à Holberton School" },
+      { title: "Une marketplace avec une bonne UI et UX" },
+      { title: "La partie login est en pause actuellement" },
     ],
-    link: "https://github.com/LucasNGRE/FlipIt",
+    link: "https://flip-it-iota.vercel.app/landing-page",
     image: flipit,
   },
 ];
@@ -64,7 +64,7 @@ export const ProjectsSection = () => {
   return (
     <section id="projects" className="pb-16 lg:py-24">
       <div className="container">
-        <SectionHeader eyebrown="Real-world Results" title="Featured projects" description="See how i transformed concepts into engaging digital experiences" />
+        <SectionHeader eyebrown="PROJETS" title="Réalisations principales" description="Découvrez comment j'ai conçu et réalisé des projets de développement web pour répondre à des besoins spécifiques." />
           <div className="flex flex-col mt-10 md:mt-20 gap-20">
             {portfolioProjects.map((project, projectIndex) => (
               <Card key={project.title}
@@ -93,7 +93,7 @@ export const ProjectsSection = () => {
                     <button 
                       className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8 
                                 hover:bg-gray-950/50 hover:text-white transition-colors duration-200 ease-in-out">
-                      <span>More info</span>
+                      <span>Découvrir</span>
                       <ArrowUpRightIcon className="size-4 ml-2" />
                     </button>
 

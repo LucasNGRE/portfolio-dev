@@ -47,7 +47,7 @@ export const Header = () => {
           }}
           className={`nav-item ${activeSection === "home" ? "active" : ""} hover:bg-white/50 transition-all duration-200`}
         >
-          Home
+          Accueil
         </a>
         <a
           href="#projects"
@@ -57,7 +57,7 @@ export const Header = () => {
           }}
           className={`nav-item ${activeSection === "projects" ? "active" : ""} hover:bg-white/50 transition-all duration-200`}
         >
-          Projects
+          Projets
         </a>
         <a
           href="#about"
@@ -67,7 +67,7 @@ export const Header = () => {
           }}
           className={`nav-item ${activeSection === "about" ? "active" : ""} hover:bg-white/50 transition-all duration-200`}
         >
-          About
+          A propos
         </a>
         <a
           href="#contact"
