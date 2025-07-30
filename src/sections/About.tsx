@@ -117,7 +117,7 @@ export const AboutSection = () => {
             </Card>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-3 gap-8">
-            <Card className="h-[320px] p-0 flex flex-col col-span-3 lg:col-span-2">
+            <Card className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2">
               <CardHeader title="En dehors du Code" description="Découvrez mes passions en dehors de l'univers du développement informatique" className="px-6 pt-6"/>
               <div className="relative flex-1" ref={constraintRef}>
                 {hobbies.map(hobby => (
@@ -134,7 +134,7 @@ export const AboutSection = () => {
                 ))}
               </div>
             </Card>
-            <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1">
+            <Card className="h-[320px] p-0 relative col-span-1 md:col-span-2 lg:col-span-1">
               <Image src={mapImage} alt="map" className="h-full w-full object-cover"/>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-ful after:content-[''] after:absolute after:ineset-0 after:outline after:ouline-2 after:outline-offset-2 after:rounded-full after:outline-gray-950/30">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-20 animate-ping [animation-duration:2s]"></div>
