@@ -1,82 +1,71 @@
 'use client';
 
-import { useState } from 'react';
+import { useState } from "react";
+import { toast } from "sonner";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
 
 export const ContactSection = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-    subject: '',
-    honeypot: '',
+    name: "",
+    email: "",
+    message: "",
+    subject: "",
+    honeypot: "",
   });
-  const [isSpam, setIsSpam] = useState(false);
-  const [formSent, setFormSent] = useState(false);
-  const [error, setError] = useState('');
+  const [formCount, setFormCount] = useState(0);
 
-  const toggleFormVisibility = () => {
-    setIsFormVisible(!isFormVisible);
-  };
+  const toggleFormVisibility = () => setIsFormVisible(!isFormVisible);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Validation de l'email
-  const validateEmail = (email: string) => {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(email);
-  };
+  const validateEmail = (email: string) =>
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Vérification de la honeypot (anti-spam)
     if (formData.honeypot) {
-      setIsSpam(true);
+      toast.error("🚨 Spam détecté !");
       return;
     }
 
-    // Vérification si tous les champs sont remplis
     if (!formData.name || !formData.email || !formData.message || !formData.subject) {
-      setError('Please fill in all fields');
-      setTimeout(() => setError(''), 3000);  // Effacer l'erreur après 3 secondes
+      toast.error("❌ Tous les champs doivent être remplis.");
       return;
     }
 
-    // Vérification de l'email
     if (!validateEmail(formData.email)) {
-      setError('Please enter a valid email address.');
-      setTimeout(() => setError(''), 3000);  // Effacer l'erreur après 3 secondes
+      toast.error("❌ Veuillez entrer une adresse email valide.");
       return;
     }
 
     try {
-      console.log('Sending data:', formData);  // Debug: Inspect data before sending
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await res.json();
+
       if (res.ok) {
-        setFormSent(true);
+        setFormCount((c) => c + 1);
+        toast.success("Ton message a bien été envoyé !");
         setIsFormVisible(false);
 
-        // Effacer le message de succès après 3 secondes
-        setTimeout(() => setFormSent(false), 3000);
+        if (formCount + 1 >= 3) {
+          toast.warning("⚠️ Vous avez déjà envoyé plusieurs messages.");
+        }
       } else {
-        setError(data.error || 'An error occurred.');
-        setTimeout(() => setError(''), 3000);  // Effacer l'erreur après 3 secondes
+        toast.error(data.error || "❌ Une erreur est survenue. Réessaie.");
       }
-    } catch (err) {
-      setError('An error occurred. Please try again later.');
-      setTimeout(() => setError(''), 3000);  // Effacer l'erreur après 3 secondes
+    } catch {
+      toast.error("❌ Impossible d’envoyer le message. Réessaie plus tard.");
     }
   };
 
@@ -84,14 +73,22 @@ export const ContactSection = () => {
     <section id="contact" className="py-16 pt-12 lg:py-24 lg:pt-20">
       <div className="container">
         <div className="bg-gradient-to-r from-emerald-300 to-sky-400 text-gray-900 py-8 px-10 rounded-3xl text-center md:text-left relative overflow-hidden z-0">
-          <div className="absolute inset-0 opacity-5 -z-10" style={{ backgroundImage: `url(${grainImage.src})` }}></div>
+          <div
+            className="absolute inset-0 opacity-5 -z-10"
+            style={{ backgroundImage: `url(${grainImage.src})` }}
+          ></div>
+
           <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
             <div>
-              <h2 className="font-serif text-2xl md:text-3xl">Ensemble, donnons vie à des projets exceptionnels</h2>
-              <p className="text-sm md:text-base mt-2">Échangeons et discutons de votre projet.</p>
+              <h2 className="font-serif text-2xl md:text-3xl">
+                Ensemble, donnons vie à des projets exceptionnels
+              </h2>
+              <p className="text-sm md:text-base mt-2">
+                Échangeons et discutons de votre projet.
+              </p>
             </div>
-            <button 
-              onClick={toggleFormVisibility} 
+            <button
+              onClick={toggleFormVisibility}
               className="text-white bg-gray-900 px-6 h-12 rounded-xl border border-gray-900 hover:bg-gray-700 flex items-center gap-2"
             >
               <span className="font-semibold">Contact</span>
@@ -102,59 +99,69 @@ export const ContactSection = () => {
           {isFormVisible && (
             <div className="mt-8">
               <h3 className="text-2xl font-semibold mb-4">Formulaire de contact</h3>
-              {isSpam && <p className="text-red-500">Your submission looks like spam.</p>}
-              {formSent && <p className="text-green-500">Ton message a été envoyé!</p>}
-              {error && <p className="text-red-500">{error}</p>}
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <input 
-                  type="text" 
-                  name="name" 
-                  value={formData.name} 
-                  onChange={handleInputChange} 
-                  placeholder="Nom" 
-                  required 
-                  className="px-4 py-2 border border-gray-300 rounded-xl" 
+                
+                {/* NOM + EMAIL sur la même ligne */}
+                <div className="flex flex-col md:flex-row gap-4">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Nom"
+                    required
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-xl"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email"
+                    required
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-xl"
+                  />
+                </div>
+
+                {/* SUJET (moitié de la largeur) */}
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  placeholder="Sujet"
+                  required
+                  className="px-4 py-2 border border-gray-300 rounded-xl w-full md:w-1/2"
                 />
-                <input 
-                  type="email" 
-                  name="email" 
-                  value={formData.email} 
-                  onChange={handleInputChange} 
-                  placeholder="Email" 
-                  required 
-                  className="px-4 py-2 border border-gray-300 rounded-xl" 
+
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Message"
+                  required
+                  className="px-4 py-2 border border-gray-300 rounded-xl h-32"
                 />
-                <input 
-                  type="text" 
-                  name="subject" 
-                  value={formData.subject} 
-                  onChange={handleInputChange} 
-                  placeholder="Sujet" 
-                  required 
-                  className="px-4 py-2 border border-gray-300 rounded-xl" 
+
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={handleInputChange}
+                  className="hidden"
+                  aria-hidden="true"
                 />
-                <textarea 
-                  name="message" 
-                  value={formData.message} 
-                  onChange={handleInputChange} 
-                  placeholder="Message" 
-                  required 
-                  className="px-4 py-2 border border-gray-300 rounded-xl h-32" 
-                />
-                <input 
-                  type="text" 
-                  name="honeypot" 
-                  value={formData.honeypot} 
-                  onChange={handleInputChange} 
-                  className="hidden" 
-                  aria-hidden="true" 
-                />
-                <button 
-                  type="submit" 
-                  className="bg-emerald-500 text-white px-6 py-2 rounded-xl hover:scale-105"
-                >
-                  Envoyer
-                </button>
+
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    className="text-white font-bold bg-black px-6 h-12 rounded-xl border border-black 
+               hover:bg-gray-800 flex items-center justify-center gap-2 
+               transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+                  >
+                    Envoyer
+                  </button>
+                </div>
               </form>
             </div>
           )}
