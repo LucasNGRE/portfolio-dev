@@ -48,8 +48,10 @@ export const Header = () => {
       </div>
 
       {/* Navbar - mobile order 2 (en dessous), desktop normal order */}
-      <nav className="flex items-center gap-3 px-4 py-1 border border-white/15 rounded-full bg-white/10 backdrop-blur
-                      flex-wrap justify-center md:justify-start max-w-4xl w-full md:w-auto order-2 md:order-1">
+      <nav
+        className="flex items-center gap-3 px-4 py-1 border border-white/15 rounded-full bg-white/10 backdrop-blur
+                   flex-nowrap overflow-x-auto justify-center md:justify-start max-w-4xl w-full md:w-auto order-2 md:order-1"
+      >
         <a
           href="#home"
           onClick={(e) => {
@@ -71,15 +73,18 @@ export const Header = () => {
           {t("projects")}
         </a>
         <a
-          href="#about"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("about");
-          }}
-          className={`nav-item ${activeSection === "about" ? "active" : ""} hover:bg-white/50 transition-all duration-200`}
-        >
-          {t("about")}
-        </a>
+  href="#about"
+  onClick={(e) => {
+    e.preventDefault();
+    scrollToSection("about");
+  }}
+  className={`nav-item max-w-[80px] text-center whitespace-nowrap
+    ${activeSection === "about" ? "border-b-2 border-white" : ""}
+    hover:bg-white/50 transition-all duration-200`}
+>
+  {t("about")}
+</a>
+
         <a
           href="#contact"
           onClick={(e) => {
@@ -93,6 +98,5 @@ export const Header = () => {
       </nav>
 
     </header>
-
   );
 };
