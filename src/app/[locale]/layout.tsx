@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Lucas NEGRE Portfolio",
     images: [
       {
-        url: "https://lucasnegre.vercel.app/fr/images/share-image.png", // image à afficher sur le partage
+        url: "https://lucasnegre.vercel.app/images/share-image.png", // image à afficher sur le partage
         width: 1200,
         height: 630,
         alt: "Lucas NEGRE Portfolio",
