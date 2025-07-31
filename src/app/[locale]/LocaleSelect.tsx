@@ -2,17 +2,24 @@
 
 import Image from "next/image";
 import { useChangeLocale, useCurrentLocale } from "@/locales/client";
-import { Switch } from "@/components/ui/switch"; // adapte le chemin si besoin
+import { Switch } from "@/components/ui/switch";
+import { useState, useEffect } from "react";
 
 export const LocaleSelect: React.FC = () => {
   const locale = useCurrentLocale();
   const changeLocale = useChangeLocale();
 
-  // Le switch est "checked" si locale = "en"
-  const isEnglish = locale === "en";
+  // Etat local pour switcher immédiatement visuellement
+  const [isEnglish, setIsEnglish] = useState(locale === "en");
+
+  // Quand la locale externe change (ex via rechargement), on sync
+  useEffect(() => {
+    setIsEnglish(locale === "en");
+  }, [locale]);
 
   const onSwitchChange = (checked: boolean) => {
-    changeLocale(checked ? "en" : "fr");
+    setIsEnglish(checked); // changement immédiat du switch
+    changeLocale(checked ? "en" : "fr"); // changer la langue (peut être async)
   };
 
   return (
