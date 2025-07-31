@@ -1,11 +1,14 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { toast } from "sonner";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
+import { useI18n } from "@/locales/client";
 
 export const ContactSection = () => {
+  const t = useI18n();
+
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -35,12 +38,12 @@ export const ContactSection = () => {
     }
 
     if (!formData.name || !formData.email || !formData.message || !formData.subject) {
-      toast.error("❌ Tous les champs doivent être remplis.");
+      toast.error(t("contactSection.errors.required"));
       return;
     }
 
     if (!validateEmail(formData.email)) {
-      toast.error("❌ Veuillez entrer une adresse email valide.");
+      toast.error(t("contactSection.errors.invalidEmail"));
       return;
     }
 
@@ -55,17 +58,17 @@ export const ContactSection = () => {
 
       if (res.ok) {
         setFormCount((c) => c + 1);
-        toast.success("Ton message a bien été envoyé !");
+        toast.success(t("contactSection.success"));
         setIsFormVisible(false);
 
         if (formCount + 1 >= 3) {
-          toast.warning("⚠️ Vous avez déjà envoyé plusieurs messages.");
+          toast.warning(t("contactSection.warning"));
         }
       } else {
-        toast.error(data.error || "❌ Une erreur est survenue. Réessaie.");
+        toast.error(data.error || t("contactSection.errors.generic"));
       }
     } catch {
-      toast.error("❌ Impossible d’envoyer le message. Réessaie plus tard.");
+      toast.error(t("contactSection.errors.network"));
     }
   };
 
@@ -81,34 +84,34 @@ export const ContactSection = () => {
           <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
             <div>
               <h2 className="font-serif text-2xl md:text-3xl">
-                Ensemble, donnons vie à des projets exceptionnels
+                {t("contactSection.title")}
               </h2>
               <p className="text-sm md:text-base mt-2">
-                Échangeons et discutons de votre projet.
+                {t("contactSection.subtitle")}
               </p>
             </div>
             <button
               onClick={toggleFormVisibility}
               className="text-white bg-gray-900 px-6 h-12 rounded-xl border border-gray-900 hover:bg-gray-700 flex items-center gap-2"
             >
-              <span className="font-semibold">Contact</span>
+              <span className="font-semibold">{t("contactSection.button")}</span>
               <ArrowUpRightIcon className="w-5 h-5" />
             </button>
           </div>
 
           {isFormVisible && (
             <div className="mt-8">
-              <h3 className="text-2xl font-semibold mb-4">Formulaire de contact</h3>
+              <h3 className="text-2xl font-semibold mb-4">
+                {t("contactSection.formTitle")}
+              </h3>
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                
-                {/* NOM + EMAIL sur la même ligne */}
                 <div className="flex flex-col md:flex-row gap-4">
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="Nom"
+                    placeholder={t("contactSection.name")}
                     required
                     className="flex-1 px-4 py-2 border border-gray-300 rounded-xl"
                   />
@@ -117,19 +120,18 @@ export const ContactSection = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="Email"
+                    placeholder={t("contactSection.email")}
                     required
                     className="flex-1 px-4 py-2 border border-gray-300 rounded-xl"
                   />
                 </div>
 
-                {/* SUJET (moitié de la largeur) */}
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  placeholder="Sujet"
+                  placeholder={t("contactSection.subject")}
                   required
                   className="px-4 py-2 border border-gray-300 rounded-xl w-full md:w-1/2"
                 />
@@ -138,7 +140,7 @@ export const ContactSection = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  placeholder="Message"
+                  placeholder={t("contactSection.message")}
                   required
                   className="px-4 py-2 border border-gray-300 rounded-xl h-32"
                 />
@@ -159,7 +161,7 @@ export const ContactSection = () => {
                hover:bg-gray-800 flex items-center justify-center gap-2 
                transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
                   >
-                    Envoyer
+                    {t("contactSection.send")}
                   </button>
                 </div>
               </form>

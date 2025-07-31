@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useI18n } from "@/locales/client";
+import { LocaleSelect } from "@/app/[locale]/LocaleSelect"; // adapte chemin si besoin
 
 export const Header = () => {
+  const t = useI18n();
   const [activeSection, setActiveSection] = useState<string>("");
 
   const handleScroll = () => {
@@ -12,7 +15,7 @@ export const Header = () => {
     sections.forEach((section) => {
       const top = section.getBoundingClientRect().top;
       if (top <= 0 && top + section.offsetHeight > 0) {
-        currentSection = section.id;  // ID de la section active
+        currentSection = section.id;
       }
     });
 
@@ -37,8 +40,16 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex justify-center fixed top-3 w-full z-10">
-      <nav className="flex items-center gap-3 px-4 py-1 border border-white/15 rounded-full bg-white/10 backdrop-blur">
+    <header className="fixed top-3 w-full z-10 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 px-4">
+
+      {/* Toggle - mobile order 1 (en haut), desktop normal order */}
+      <div className="flex-shrink-0 order-1 md:order-2">
+        <LocaleSelect />
+      </div>
+
+      {/* Navbar - mobile order 2 (en dessous), desktop normal order */}
+      <nav className="flex items-center gap-3 px-4 py-1 border border-white/15 rounded-full bg-white/10 backdrop-blur
+                      flex-wrap justify-center md:justify-start max-w-4xl w-full md:w-auto order-2 md:order-1">
         <a
           href="#home"
           onClick={(e) => {
@@ -47,7 +58,7 @@ export const Header = () => {
           }}
           className={`nav-item ${activeSection === "home" ? "active" : ""} hover:bg-white/50 transition-all duration-200`}
         >
-          Accueil
+          {t("home")}
         </a>
         <a
           href="#projects"
@@ -57,7 +68,7 @@ export const Header = () => {
           }}
           className={`nav-item ${activeSection === "projects" ? "active" : ""} hover:bg-white/50 transition-all duration-200`}
         >
-          Projets
+          {t("projects")}
         </a>
         <a
           href="#about"
@@ -67,7 +78,7 @@ export const Header = () => {
           }}
           className={`nav-item ${activeSection === "about" ? "active" : ""} hover:bg-white/50 transition-all duration-200`}
         >
-          A propos
+          {t("about")}
         </a>
         <a
           href="#contact"
@@ -77,9 +88,11 @@ export const Header = () => {
           }}
           className={`nav-item ${activeSection === "contact" ? "active" : ""} hover:bg-white/50 transition-all duration-200`}
         >
-          Contact
+          {t("contact")}
         </a>
       </nav>
+
     </header>
+
   );
 };

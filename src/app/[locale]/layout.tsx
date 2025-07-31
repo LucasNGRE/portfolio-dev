@@ -3,6 +3,7 @@ import { Inter, Calistoga } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import { Toaster } from "@/components/ui/sonner";
+import { Providers } from "./providers";
 
 const inter = Inter ({ subsets: ["latin"], variable: "--font-sans" });
 const calistoga = Calistoga ({
@@ -20,8 +21,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string;  };
 }>) {
   return (
     <html lang="en">
@@ -31,7 +34,9 @@ export default function RootLayout({
           calistoga.variable,
           "bg-gray-900 text-white antialiased font-sans"
         )}>
-          {children}
+          <Providers locale={params.locale}>
+            {children}
+          </Providers>
           <Toaster  richColors />
       </body>
     </html>

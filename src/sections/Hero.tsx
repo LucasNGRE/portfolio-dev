@@ -7,11 +7,13 @@ import grainImage from '@/assets/images/grain.jpg';
 import StarIcon from '@/assets/icons/star.svg';
 import SparkleIcon from '@/assets/icons/sparkle.svg';
 import { HeroOrbit } from '@/components/HeroOrbit';
+import { useI18n } from '@/locales/client';
 
 export const HeroSection = () => {
+  const t = useI18n();
+
   const scrollToNextSection = () => {
-    const nextSection = document.getElementById('projects'); // Remplacez 'next-section' par l'ID de la section suivante
-    console.log(nextSection);
+    const nextSection = document.getElementById('projects'); 
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -70,33 +72,32 @@ export const HeroSection = () => {
             <div className='bg-green-500 size-2.5 rounded-full relative'>
               <div className='bg-green-500 absolute inset-0 rounded-full animate-ping-large'></div>
             </div>
-            <div className='text-sm font-medium'>Disponible pour des nouveaux projets</div>
+            <div className='text-sm font-medium'>{t("availableForProjects")}</div>
           </div>
         </div>
         <div className='max-w-lg mx-auto'>
           <h1 className='font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide'>Lucas NEGRE</h1>
-          <h2 className='text-center text-white/60 mt-2'>Développeur Web - Full stack</h2>
-          <p className='mt-4 text-center text-white/60 md:text-lg'>Je suis en deuxième année de formation en développement full stack, et je travaille en alternance chez Bonnefis Automobile en tant que responsable de la partie technologique de l&apos;entreprise.
-          </p>
+          <h2 className='text-center text-white/60 mt-2'>{t("webDeveloperFullStack")}</h2>
+          <p className='mt-4 text-center text-white/60 md:text-lg'>{t("introDescription")}</p>
         </div>
         <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
-        <button 
-          onClick={scrollToNextSection} 
-          className='inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl 
-                    hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-out'>
-          <span className='font-semibold'>
-            Découvre mes projets
-          </span>
-          <ArrowDown className="size-4" />
-        </button>
+          <button 
+            onClick={scrollToNextSection} 
+            className='inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl 
+                      hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-out'>
+            <span className='font-semibold'>
+              {t("discoverProjects")}
+            </span>
+            <ArrowDown className="size-4" />
+          </button>
 
-        <button
-          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl 
-                    hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-out'>
-          <span>🖐️</span>
-          <span className='font-semibold'>Me contacter</span>
-        </button>
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl 
+                      hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-out'>
+            <span>🖐️</span>
+            <span className='font-semibold'>{t("contactMe")}</span>
+          </button>
 
         </div>
       </div>
