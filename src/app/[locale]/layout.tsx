@@ -17,6 +17,22 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  openGraph: {
+    title: "Lucas NEGRE | Portfolio",
+    description: "Découvrez mon portfolio en ligne",
+    url: "https://lucasnegre.vercel.app/fr", // Remplace par ton URL réelle
+    siteName: "Lucas NEGRE Portfolio",
+    images: [
+      {
+        url: "https://lucasnegre.vercel.app/fr/images/share-image.png", // image à afficher sur le partage
+        width: 1200,
+        height: 630,
+        alt: "Lucas NEGRE Portfolio",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
